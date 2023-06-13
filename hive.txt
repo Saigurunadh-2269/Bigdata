@@ -1,0 +1,13 @@
+drop database if exists gd_sample_project
+drop table if exists clothing
+use gd_sample_project
+CREATE EXTERNAL TABLE clothing (Product_URL string,Brand string,Description string,Id_Product string,URL_image string,Category_by_gender string,Discount_
+Price string,Original_Price string,Color string
+)
+ROW FORMAT SERDE 'org.apache.hadoop.hive.serde2.OpenCSVSerde'
+WITH SERDEPROPERTIES (
+  "separatorChar" = ",",
+  "quoteChar" = "\""
+)
+LOCATION '/user/bigdatacloudxlab27228/Deepti'
+tblproperties("skip.header.line.count"="1");

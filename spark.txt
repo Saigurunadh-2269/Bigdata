@@ -1,0 +1,16 @@
+spark.sql("SELECT * FROM gd_sample_project.clothing")
+from pyspark.sql.functions import col, when
+df_num = df_num = df.select(
+    when(col("Product_URL").isNull() | (col("Product_URL") == ""), "N/A").otherwise(col("Product_URL")).alias("Product_URL"),
+    when(col("Brand").isNull() | (col("Brand") == ""), "N/A").otherwise(col("Brand")).alias("Brand"),
+    when(col("Description").isNull() | (col("Description") == ""), "N/A").otherwise(col("Description")).alias("Description"),
+    when(col("Id_Product").isNull() | (col("Id_Product") == ""), "N/A").otherwise(col("Id_Product")).alias("Id_Product"),
+    when(col("URL_image").isNull() | (col("URL_image") == ""), "N/A").otherwise(col("URL_image")).alias("URL_image"),
+    when(col("Category_by_gender").isNull() | (col("Category_by_gender") == ""), "N/A").otherwise(col("Category_by_gender")).alias("Category_by_gender"),
+    when(col("Discount_Price").isNull() | (col("Discount_Price") == ""), "N/A").otherwise(col("Discount_Price")).alias("Discount_Price"),
+    when(col("Original_Price").isNull() | (col("Original_Price") == ""), "N/A").otherwise(col("Original_Price")).alias("Original_Price"),
+    when(col("Color").isNull() | (col("Color") == ""), "N/A").otherwise(col("Color")).alias("Color")
+)        
+        
+df_num.write.mode("overwrite").parquet("/user/bigdatacloudxlab27228/gd_clothing_parq")
+df_num.write.csv("/user/bigdatacloudxlab27228/gd_clothing_csv")
