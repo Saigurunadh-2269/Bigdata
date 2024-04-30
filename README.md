@@ -6,4 +6,6 @@ Spark needs to be installed
 ### overview
 ```command-line
 Spark & Sqoop
+    sample spark
+        sample sqoop
 ```
